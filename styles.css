@@ -85,3 +85,37 @@ body {
         padding: 40px 15px;
     }
 }
+
+/* Shopping Cart page */
+
+.cart-summary {
+    background-color: white;
+    padding: 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+#resultsTable td,
+#cartTable td {
+    vertical-align: middle;
+}
+
+#searchBox:focus {
+    border-color: #7652a8;
+    box-shadow: 0 0 0 0.2rem rgba(118, 82, 168, 0.2);
+}
+
+@media (max-width: 576px) {
+    .cart-summary {
+        padding: 16px;
+    }
+
+    .cart-summary > div {
+        width: 100%;
+    }
+
+    .cart-summary .btn {
+        width: 100%;
+        margin: 0 0 8px 0 !important;
+    }
+}

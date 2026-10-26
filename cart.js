@@ -104,6 +104,7 @@ function renderCart() {
         const row = document.createElement("tr");
         const cell = document.createElement("td");
         cell.colSpan = 4;
+        cell.className = "text-center text-muted py-4";//
         cell.textContent = "Your cart is empty.";
         row.appendChild(cell);
         cartBody.appendChild(row);
@@ -116,12 +117,14 @@ function renderCart() {
         row.appendChild(titleCell);
 
         const quantityCell = document.createElement("td");
+        quantityCell.className = "text-center";//
         const input = document.createElement("input");
         input.type = "number";
         input.min = "1";
         input.step = "1";
         input.value = item.quantity;
-        input.className = "form-control";
+        input.className = "form-control form-control-sm mx-auto text-center";
+        input.style.maxWidth = "80px";
         input.setAttribute("aria-label", "Quantity for " + item.title);
         input.addEventListener("change", function() {
             if (!updateCartQuantity(item.trackId, input.value)) {
@@ -136,11 +139,13 @@ function renderCart() {
         const lineCents = Math.round(item.price * 100) * item.quantity;
         totalCents += lineCents;
         const priceCell = document.createElement("td");
+        priceCell.className = "text-end";
         priceCell.textContent = "$" + (lineCents / 100).toFixed(2) +
             " ($" + item.price.toFixed(2) + " each)";
         row.appendChild(priceCell);
 
         const buttonCell = document.createElement("td");
+        buttonCell.className = "text-end";
         const button = document.createElement("button");
         button.type = "button";
         button.className = "btn btn-outline-danger btn-sm";
@@ -177,5 +182,13 @@ document.getElementById("clearCartBtn").addEventListener("click", function() {
     renderCart();
     showCartMessage("Cart cleared.", "success");
 });
+// Clear button next to the search box
+    document.getElementById("clearSearchBtn").addEventListener("click", function() {
+    const searchBox = document.getElementById("searchBox");
+     searchBox.value = "";
+     searchBox.dispatchEvent(new Event("input", { bubbles: true }));
+     searchBox.focus();
+});
+
 
 renderCart();
